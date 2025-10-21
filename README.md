@@ -10,16 +10,19 @@ El objetivo es construir un entorno de pruebas totalmente funcional en el que el
 ## ⚙️ Arquitectura
 
 ```
-+------------------+          +------------------+          +------------------+
-|     srsUE        | <==ZMQ==>|    GNU RADIO     | <==ZMQ==>|      gNB         |
-| (srsRAN_4G UE)   |          | (Flow Graph)     |          | (srsRAN Project) |
-+------------------+          +------------------+          +------------------+
-                                  |
-                                  v
-                          +------------------+
-                          |     Open5GS      |
-                          | (5GC Dockerized) |
-                          +------------------+
+           +-----------+                         +------------------+            +-----------------+
+           |  srsUE 1  |                         |                  |            |                 |
+           +-----------+                         |                  |            |                 |
+                ^                                |                  |            |                 |
+                | ZMQ                            |       gNB        |<-- NGAP -->|    Open5GS      |
+                v                                | (srsRAN_Project) |   (SCTP)   |    (Docker)     |
++-----------------------------+                  |                  |            |                 |
+| GNU Radio (prueba1.py)      |<---- ZMQ ------>+|                  |            |                 |
++-----------------------------+                  |                  |            +-----------------+
+                                                 |                  |
+                                                 |                  |
+                                                 +------------------+
+
 ```
 
 Los **sockets ZMQ** utilizados para la comunicación entre el UE y el gNB están configurados de la siguiente manera (según `prueba1.py`):
