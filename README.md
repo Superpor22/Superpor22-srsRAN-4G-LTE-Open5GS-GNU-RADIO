@@ -229,5 +229,5 @@ sudo ip netns exec ue1 iperf3 -c 10.53.1.1 -i 1 -t 60
 ---
 
 ## 🧠 Autor
-Proyecto desarrollado por **Superpor22**  
+Proyecto desarrollado por **José Antonio Bravo Romero**  
 Integración de **srsRAN 4G**, **Open5GS** y **GNU Radio** para la emulación de redes 5G con un único UE conectado vía **ZeroMQ**.
