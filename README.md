@@ -26,8 +26,8 @@ Los **sockets ZMQ** utilizados para la comunicación entre el UE y el gNB están
 
 | Dirección | Tipo | Descripción |
 |------------|------|-------------|
-| `tcp://*:2000` | REP | gNB RX (recibe desde GNU Radio) |
-| `tcp://*:2001` | REQ | gNB TX (envía hacia GNU Radio) |
+| `tcp://localhost:2000` | REP | gNB RX (recibe desde GNU Radio) |
+| `tcp://localhost:2001` | REQ | gNB TX (envía hacia GNU Radio) |
 | `tcp://*:2100` | REP | UE RX |
 | `tcp://*:2101` | REQ | UE TX |
 
@@ -99,7 +99,7 @@ Archivo: `gnb_zmq.yaml`
 ```yaml
 ru_sdr:
   device_driver: zmq
-  device_args: tx_port=tcp://127.0.0.1:2000,rx_port=tcp://127.0.0.1:2001,base_srate=11.52e6
+  device_args: tx_port=tcp://localhost:2000,rx_port=tcp://*:2001,base_srate=11.52e6
   srate: 11.52
   tx_gain: 75
   rx_gain: 75
@@ -118,7 +118,7 @@ Archivo: `ue_zmq.conf`
 ```ini
 [rf]
 device_name = zmq
-device_args = tx_port=tcp://127.0.0.1:2101,rx_port=tcp://127.0.0.1:2100,base_srate=11.52e6
+device_args = tx_port=tcp://*:2101,rx_port=tcp://localhost:2100,base_srate=11.52e6
 srate = 11.52e6
 tx_gain = 50
 rx_gain = 40
